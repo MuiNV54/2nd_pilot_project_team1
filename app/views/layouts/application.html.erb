@@ -14,8 +14,7 @@
       <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
     <% end %>
     <% if user_signed_in? -%>
-        <%= current_user.email %> 
-        <%= link_to 'My info', edit_user_registration_path %> 
+        <%= link_to 'Modify private info', edit_user_registration_path %> 
       </div>
     <% else %>
       <%= render "devise/registrations/new" %>

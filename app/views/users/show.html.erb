@@ -1,0 +1,6 @@
+<%= render "status/new" %>
+
+<% @statuses.each do |status| %>
+	<%= link_to @user.name, @user %>
+	<%= status.content %> <br />
+<% end %>
