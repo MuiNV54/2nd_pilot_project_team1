@@ -1,0 +1,97 @@
+@import "bootstrap";
+@import "custom_mixins";
+
+$color_black: #333538;
+$color_link_hover: #3498db;
+$color_white: #fffcf5;
+
+$font_title: "Ubuntu", "Segoe UI";
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+#logo {
+  float: left;
+  margin: 5px 0 0 10px;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  line-height: 1;
+  font-family: $font_title;
+}
+
+#logo:hover {
+  color: $color_white;
+  text-decoration: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  @include clearfix;
+  font-size: 36px;
+  font-family: $font_title;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+h2 {
+  @include clearfix;
+  font-size: 20px;
+  font-family: $font_title;
+  margin: 30px 0;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 16px;
+  font-family: $font_title;
+  margin: 15px 0 10px 0;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $color_link_hover ;
+}
+
+/* header */
+
+.navbar-inverse .navbar-inner {
+  background-color: $color_black;
+  background-image: none;
+  border-color: $color_black;
+}

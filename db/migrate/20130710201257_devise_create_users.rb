@@ -2,8 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     create_table(:users) do |t|
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :name,               null: false
+      t.string :email,              null: false, :default => ""
+      t.string :encrypted_password, null: false, :default => ""
+      t.datetime :birthday,        null: false
 
       ## Recoverable
       t.string   :reset_password_token
