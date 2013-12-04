@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :friend_users, through: :friendships, source: :friended
   has_many :reverse_friendships, foreign_key: "friend_id",
     class_name: "Friendship", dependent: :destroy
+  has_many :memberships
+  has_many :groups
 
   def friended? other_user
     friendships.find_by friend_id: other_user.id
