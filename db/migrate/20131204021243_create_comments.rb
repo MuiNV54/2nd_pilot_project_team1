@@ -3,11 +3,7 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.integer :user_id
       t.integer :status_id
-<<<<<<< HEAD
-      t.string :content
-=======
       t.text :content
->>>>>>> Comments
 
       t.timestamps
     end
