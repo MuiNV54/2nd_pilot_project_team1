@@ -1,25 +1,26 @@
-<h3>All Activities</h3>
 <ul>
 	<% Activity.all.order_desc_created_at.each do |activity| %>
 	  <% if activity.user.friended? current_user %>
-	  	<li>
-	  		<%= link_to small_avatar(activity.user), activity.user %>
-		  	<% case activity.temtype %>
-		  	<% when "EDIT_PROFILE" %>
-		  		<%= link_to activity.user.name, activity.user %> was updated profile
-		  	<% when "POST_STATUS" %>
-		  		<%= link_to activity.user.name, activity.user %> posted a status in <%= link_to activity.effect_user.name, activity.effect_user %> wall
-		  	<% when "COMMENT_STATUS" %>
-		  		<%= link_to activity.user.name, activity.user %> commented in a status of <%= link_to activity.effect_user.name, activity.effect_user %>
-		  	<% when "ADD_FRIEND" %>
-		  		<%= link_to activity.user.name, activity.user %> added friend with <%= link_to activity.effect_user.name, activity.effect_user %>
-		  	<% when "LIKE__STATUS" %>
-		  		<%= link_to activity.user.name, activity.user %> liked a status of <%= link_to activity.effect_user.name, activity.effect_user %>
-		  	<% when "SHARE__STATUS" %>
-		  		<%= link_to activity.user.name, activity.user %> shared a status of <%= link_to activity.effect_user.name, activity.effect_user %>
-		<% end %>
-		 	<%= time_ago_in_words activity.created_at %> ago
-		 	</li>
+		  <div class="activities">
+		  	<%= link_to small_avatar(activity.user), activity.user %>
+		  	<li class="activities_content">
+			  	<% case activity.temtype %>
+			  	<% when "EDIT_PROFILE" %>
+			  		<%= link_to activity.user.name, activity.user %> was updated profile
+			  	<% when "POST_STATUS" %>
+			  		<%= link_to activity.user.name, activity.user %> posted a status in <%= link_to activity.effect_user.name, activity.effect_user %> wall
+			  	<% when "COMMENT_STATUS" %>
+			  		<%= link_to activity.user.name, activity.user %> commented in a status of <%= link_to activity.effect_user.name, activity.effect_user %>
+			  	<% when "ADD_FRIEND" %>
+			  		<%= link_to activity.user.name, activity.user %> added friend with <%= link_to activity.effect_user.name, activity.effect_user %>
+			  	<% when "LIKE__STATUS" %>
+			  		<%= link_to activity.user.name, activity.user %> liked a status of <%= link_to activity.effect_user.name, activity.effect_user %>
+			  	<% when "SHARE__STATUS" %>
+			  		<%= link_to activity.user.name, activity.user %> shared a status of <%= link_to activity.effect_user.name, activity.effect_user %>
+					<% end %>
+			 		<%= time_ago_in_words activity.created_at %> ago
+			 	</li>
+		 </div>
 		<% end %>
 	<% end %>
 </ul>
