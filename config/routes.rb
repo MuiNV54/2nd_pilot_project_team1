@@ -6,5 +6,6 @@ DeviseExample::Application.routes.draw do
   end
   resources :users do
  	  resources :statuses
+ 	  resources :friendships
   end
 end

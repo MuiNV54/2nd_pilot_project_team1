@@ -1,6 +1,10 @@
+<li><%= link_to "Friendships", user_friendships_path(@user) %>(<%= @user.friendships.count %>)</li>
 <%= render "status/new" %>
-
 <% @statuses.each do |status| %>
 	<%= link_to @user.name, @user %>
-	<%= status.content %> <br />
+	<%= status.content %>
 <% end %>
+
+<div class="span8">
+  <%= render "friend_form" if signed_in? %>
+</div>
