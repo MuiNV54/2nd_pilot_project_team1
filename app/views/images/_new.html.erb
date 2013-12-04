@@ -2,24 +2,3 @@
   <%= f.file_field :photo, id: "image_new" , style: "display: none", accept: "image/*" %>
   <%= image_tag "http://imageshack.com/a/img823/8633/v0wh.png", id: "image", style: "cursor:pointer", style: "width: 160px; height: 160px" %>
 <% end %>
-<script>
-  $(function(){
-    $("#image_new").change(function(){
-      if (this.files && this.files[0]){
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $("#image")
-            .attr('src', e.target.result)
-            .width(200)
-            .height(250);
-          };
-        reader.readAsDataURL(this.files[0]);
-        $("#new_image").submit();
-      }
-    });
-    $("#image").click(function () {
-
-    $("#image_new").trigger('click');
-    });
-  });
-</script>

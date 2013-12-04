@@ -1,31 +1,29 @@
-<div class="abc">
-  <div class="img_tag">
+<div class="image-comment-wrap">
+  <div class="image">
     <%= image_tag @image.photo %>
   </div>
-  <div class="comment_image">
-    <%= link_to gravatar_for(@image.album.user), @image.album.user %>
-    <%= link_to @image.album.user.name, @image.album.user %>
-    <%= @image.album.title %></br>
-    <%= @image.album.description.html_safe %>
-    <% @image.comment_images.each do |comment_image| %>
-      <div>
-        <%= link_to small_avatar(comment_image.user), comment_image.user %>
-        <%= link_to comment_image.user.name, comment_image.user, target: "_blank" %>
-        <%= comment_image.content %>
+  <div class="image-comment">
+    <div class="status-image">
+      <%= link_to gravatar_for(@image.album.user), @image.album.user %>
+    </div>
+    <div class="status-content-wrap">
+      <div class="name">
+        <%= link_to @image.album.user.name, @image.album.user %>
       </div>
-    <% end %>
+      <div class="status-content">
+        <%= @image.album.title %>
+      </div>
+    </div>
+    <p><%= @image.album.description.html_safe %></p>
+    <ul class="image-comments">
+      <% @image.comment_images.each do |comment_image| %>
+        <li>
+          <%= link_to small_avatar(comment_image.user), comment_image.user %>
+          <%= link_to comment_image.user.name, comment_image.user, target: "_blank" %>
+          <%= comment_image.content %>
+        </li>
+      <% end %>
+    </ul>
     <%= render "new_comment" %>
   </div>
 </div>
-<style>
-  .abc{
-    height: 500px;
-  }
-  .abc img{
-    float: left;
-  }
-  .comment_image textarea {
-    height: 40px;
-    width: 300px;
-  }
-</style>

@@ -2,23 +2,9 @@
   <h3> All images </h3>
   <% @album.images.each do |image| %>
     <%= link_to image_tag(image.photo), user_album_image_path(@user, @album, image), html_options = {class: "fancybox", rel:"image"} %>
-    <%= link_to image_tag("https://cdn1.iconfinder.com/data/icons/softwaredemo/PNG/256x256/DeleteRed.png"), user_album_image_path(current_user, @album, image), method: :delete, confirm:"Are you sure?", id:"button_delete" if current_user? @user %>
+    <%= link_to image_tag("https://cdn1.iconfinder.com/data/icons/softwaredemo/PNG/256x256/DeleteRed.png"), user_album_image_path(current_user, @album, image), method: :delete, confirm:"Are you sure?", class:"button-delete" if current_user? @user %>
   <% end %>
   <% if current_user? @user %>
     <%= render "images/new" %>
   <% end %>
 </div>
-<script>
-  jQuery.noConflict();
-  $(document).ready(function(){
-  $('a.fancybox').fancybox({
-    type: "iframe",
-    width        : 800,
-    height       : 500,
-    helpers     : {  
-        title : { type : 'inside' },
-        media : {}
-  }
-  });
- });
-</script>

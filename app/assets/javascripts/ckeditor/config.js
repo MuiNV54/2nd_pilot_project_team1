@@ -1,7 +1,7 @@
 if (typeof(CKEDITOR) != 'undefined') {
             CKEDITOR.editorConfig = function( config )
             {
-              config.toolbar = 'MyToolbar'
+              config.toolbar = 'MyToolbar';
 
               config.toolbar_MyToolbar =
                 [

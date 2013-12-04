@@ -1,12 +1,5 @@
-  <%= form_for [current_user, status, @comment] do |f| %>
-    <div class="comment">
-      <%= f.text_area :content, placeholder:"Write comment..." %>
-    </div>
-  <% end %>
-  <script type="text/javascript">
-    $('#comment_content').keydown(function(e) {
-        if (e.keyCode == 13) {
-            $('#new_comment').submit();
-        }
-    });
-  </script>
+<%= form_for [current_user, status, @comment] do |f| %>
+  <div class="comment">
+    <%= f.text_area :content, placeholder:"Write comment..." %>
+  </div>
+<% end %>

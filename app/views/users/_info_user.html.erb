@@ -17,23 +17,3 @@
   <li>User birthday: <%= I18n.l @user.birthday %></li>
   <li>User gender: <%= @user.gender %></li>
 </ul>
-<script>
-  $(function(){
-    $("#btn_change_avatar").change(function(){
-      if (this.files && this.files[0]){
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $("#avatar")
-            .attr('src', e.target.result)
-            .width(200)
-            .height(250);
-          };
-        reader.readAsDataURL(this.files[0]);
-        $(".edit_user").submit();
-      }
-    });
-    $("#avatar").click(function () {
-    $("#btn_change_avatar").trigger('click');
-    });
-  });
-</script>

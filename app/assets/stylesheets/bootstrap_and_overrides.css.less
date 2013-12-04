@@ -112,6 +112,10 @@ textarea {
   color: white;
 }
 
+.navbar .nav {
+  width: 100%;
+}
+
 .navbar .nav > li > a {
     color: white;
     float: none;
@@ -122,11 +126,6 @@ textarea {
 .navbar .nav > li > a:hover{
   background: none repeat scroll 0 0 #3B5998;
   color: white;
-}
-
-.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-    background-color: #3B5998;
-    color: white;
 }
 #new_status input{
   margin-top: 5px;
@@ -207,17 +206,114 @@ a {
   font-size: 13px;
 }
 .status-image img {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 .search > div {
-    margin-left: 140px;
-    margin-right: 160px;
+  margin-left: 85px;
+}
+
+div.menu {
+  float: right;
+  margin-right: 40px;
+}
+
+div.menu li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+div.menu li a {
+  color: #fff;
+  text-decoration: none
 }
 
 .status-meta > a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .status-comment > a {
-    cursor: pointer;
+  cursor: pointer;
+}
+textarea {
+  width: 295px;
+}
+
+.album .button-delete img {
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+  margin-top: 5px;
+}
+
+.image-comment-wrap {
+  height: 480px;
+  overflow: hidden;
+}
+
+.image-comment-wrap .image img {
+  float: left;
+  width: 480px;
+  height: 480px;
+}
+
+.image-comment {
+  width: 280px;
+  height: 480px;
+  margin-left: 500px;
+  padding-right: 20px;
+  overflow-y: scroll;
+}
+
+.image-comment textarea {
+  height: 40px;
+  width: 300px;
+}
+
+#fancybox-left {
+  width: 30px!important;
+  margin-left: -30px;
+}
+
+#fancybox-right {
+  width: 30px!important;
+  margin-right: -30px;
+}
+
+#fancybox-left-ico, #fancybox-right-ico {
+  left: auto!important;
+}
+
+#fancybox-right-ico {
+  margin-right: -20px;
+}
+
+.image-comments {
+  list-style: none;
+  margin: 0;
+}
+
+.image-comments li {
+  margin-bottom: 10px;
+}
+
+#comment_image_content {
+  width: 250px;
+}
+
+.edit-status-wrap {
+  width: 490px;
+  margin-left: 60px;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #3B5998;
+  color: white;
+}
+.dropdown-menu li a {
+color: black!important;
+text-decoration: none
+}
+
+#edit_user_1 > input {
+    width: 294px;
 }

@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  layout "blank"
   before_action :authenticate_user! 
   def index
   end
@@ -12,7 +13,6 @@ class ImagesController < ApplicationController
     @album = @user.albums.find params[:album_id]
     @image = @album.images.find params[:id]
     @comment_image = CommentImage.new
-    render :layout => false
   end
 
   def create

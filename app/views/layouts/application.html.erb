@@ -13,7 +13,6 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
-
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
     <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
@@ -34,7 +33,7 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
-    <%= javascript_include_tag "application" %>
+    
   </head>
   <body>
     <%= render"shared/header" %>
@@ -58,8 +57,7 @@
       <footer>
         <center><p>&copy; Mui ngu 2013</p></center>
       </footer>
-
+          <%= javascript_include_tag "application" %>
     </div> <!-- /container -->
-
   </body>
 </html>

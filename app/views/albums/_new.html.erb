@@ -2,6 +2,6 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :description %>
-  <%= f.cktext_area :description %>
+  <%= f.text_area :description, class: "ckeditor" %>
   <%= f.submit "Create" %>
 <% end %>
