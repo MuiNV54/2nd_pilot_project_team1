@@ -1,6 +1,12 @@
 <% provide(:title, "All group") %>
-<h4>groups(<%= @user.groups.count %>)</h4>
-
-<% @user.groups.each do |group| %>
-  <li><%= link_to group.name, user_group_path(@user, group) %></li>
+<% if @user %>
+  <h4>groups(<%= @user.groups.count %>)</h4>
+  <% @user.groups.each do |group| %>
+    <li><%= link_to group.name, user_group_path(@user, group) %></li>
+  <% end %>
+<% else %>
+  <h4>groups(<%= current_user.groups.count %>)</h4>
+  <% current_user.groups.each do |group| %>
+    <li><%= link_to group.name, user_group_path(current_user, group) %></li>
+  <% end %>
 <% end %>

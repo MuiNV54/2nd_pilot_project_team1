@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-  	@group = User.groups.find params[:id]
+  	@group = Group.new
   end
 
   def create
