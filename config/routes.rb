@@ -12,6 +12,11 @@ DeviseExample::Application.routes.draw do
     collection do
       get :search_auto
     end
+    resources :albums do
+      resources :images do
+        resources :comment_images
+      end
+    end
  	  resources :friendships
  	  resources :groups
  	  resources :statuses do

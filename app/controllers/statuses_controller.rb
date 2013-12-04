@@ -24,7 +24,7 @@ class StatusesController < ApplicationController
 
   def update
     @user = User.find params[:user_id]
-    @status = Status.find params[:id]
+    @status = @user.statuses.find params[:id]
     if params[:flag]
       @status.get_permit params[:flag]
     else

@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def show
   	@user = User.find params[:user_id]
-  	@group = Group.find params[:id]
+  	@group = @user.groups.find params[:id]
   end
 
   def new

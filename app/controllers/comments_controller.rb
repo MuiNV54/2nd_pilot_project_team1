@@ -21,8 +21,8 @@ class CommentsController < ApplicationController
 
   def update
     @user = User.find params[:user_id]
-    @status = Status.find params[:status_id]
-    @comment = Comment.find params[:id]
+    @status = @user.statuses.find params[:status_id]
+    @comment = @status.comments.find params[:id]
     if @comment.update_attributes content: params[:comment][:content]
       redirect_to :back
     end
