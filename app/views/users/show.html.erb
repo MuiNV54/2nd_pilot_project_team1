@@ -39,7 +39,7 @@
     </div>
     <div class="edit_status_wrap" style="display: none" >
       <%= form_for [current_user, status] do |f| %>
-        <%= f.cktext_area :content %>
+        <%= f.text_area :content, class:"ckeditor" %>
         <%= f.submit "Edit status" %>
       <% end %>
     </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="edit_comment_wrap" style="display: none" >
           <%= form_for [current_user, status, comment] do |f| %>
-            <%= f.cktext_area :content %>
+            <%= f.text_area :content %>
             <%= f.submit "Edit comment" %>
           <% end %>
         </div>
