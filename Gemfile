@@ -6,7 +6,6 @@ ruby "2.0.0"
 gem "rails", "4.0.0"
 
 # Use Sass with Bootstrap
-gem "bootstrap-sass", "2.3.2.0"
 gem "rails_config"
 # Pagination
 gem "will_paginate", "3.0.4"
@@ -51,6 +50,11 @@ group :doc do
   gem "sdoc", require: false
   gem "rails_12factor", "0.0.2"
 end
+
+gem "therubyracer"
+gem "less-rails"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
