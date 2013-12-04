@@ -1,10 +1,10 @@
 <%= form_for [current_user, @album, @image], :html => { :multipart => true } do |f| %>
-  <%= f.file_field :photo, id: "btn_change_avatar" , style: "display: none", accept: "image/*" %>
+  <%= f.file_field :photo, id: "image_new" , style: "display: none", accept: "image/*" %>
   <%= image_tag "http://imageshack.com/a/img823/8633/v0wh.png", id: "image", style: "cursor:pointer", style: "width: 160px; height: 160px" %>
 <% end %>
 <script>
   $(function(){
-    $("#btn_change_avatar").change(function(){
+    $("#image_new").change(function(){
       if (this.files && this.files[0]){
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -18,7 +18,8 @@
       }
     });
     $("#image").click(function () {
-    $("#btn_change_avatar").trigger('click');
+
+    $("#image_new").trigger('click');
     });
   });
 </script>

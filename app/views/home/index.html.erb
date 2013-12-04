@@ -3,21 +3,13 @@
   <% if current_user.id == status.user_id || current_user.id == status.host_id  || status.status_host.friended?(current_user) || status.user.friended?(current_user) || status.shared_by?(current_user) || status.create_by_friend_of?(current_user) %>
       <% if status.create_by_friend? %>
         <div class="status-image">
-          <% if status.user.avatar? %>
-            <%= link_to image_tag(status.user.avatar.avatar), status.user %>
-          <% else %>
-            <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), status.user %>
-          <% end %>
+          <%= link_to gravatar_for(status.user), status.user %>
         </div>
         <%= link_to status.status_host.name, status.status_host %> to <%= link_to status.user.name, status.user %> <br/>
         <%= status.content.html_safe %>
       <% else %>
       <div class="status-image">
-        <% if status.user.avatar? %>
-          <%= link_to image_tag(status.user.avatar.avatar), status.user %>
-        <% else %>
-          <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), status.user %>
-        <% end %>
+        <%= link_to gravatar_for(status.user), status.user %>
       </div>
       <div class="status-content-wrap">
         <div class="name">          
@@ -68,11 +60,7 @@
         <% status.comments.each do |comment| %>
           <div class="status-comment">
             <div class="name">
-              <% if comment.user.avatar? %>
-                <%= link_to image_tag(comment.user.avatar.small_avatar), comment.user %>
-              <% else %>
-                <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 32px" ), status.user %>
-              <% end %>
+              <%= link_to small_avatar(comment.user), comment.user %>
               <%= link_to comment.user.name, comment.user %>
             </div>
             <%= comment.content %></br>

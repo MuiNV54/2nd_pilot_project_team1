@@ -9,34 +9,16 @@
   <% end %>
 </div>
 <script>
-  $(document).ready(function() {
+  jQuery.noConflict();
+  $(document).ready(function(){
   $('a.fancybox').fancybox({
     type: "iframe",
-    // width        : '600',
-    // height       : '400',
+    width        : 800,
+    height       : 500,
     helpers     : {  
         title : { type : 'inside' },
         media : {}
   }
-
   });
  });
 </script>
-<style>
-  .fancybox-nav {
-      position: fixed;
-      top: 0;
-      width: 20%;
-  }
-  .fancybox-nav span {
-      visibility: visible;
-  }
-
-  .fancybox-next span {
-      right: 40px;
-  }
-
-  .fancybox-prev span {
-      left: 40px;
-  }
-</style>
