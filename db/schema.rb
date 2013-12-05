@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20131204183422) do
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "status_id"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20131204183422) do
 
   create_table "statuses", force: true do |t|
     t.integer  "user_id"
+    t.text     "content"
     t.integer  "host_id"
-    t.string   "content"
     t.string   "permit",     limit: 1, default: "P"
     t.datetime "created_at"
     t.datetime "updated_at"

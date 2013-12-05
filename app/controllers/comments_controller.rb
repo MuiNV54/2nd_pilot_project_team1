@@ -30,4 +30,8 @@ class CommentsController < ApplicationController
     Comment.find(params[:id]).destroy
     redirect_to :back
   end
+      @comment.update_attributes(user_id: current_user.id, status_id: params[:status_id])
+    end
+    redirect_to :back
+  end
 end
