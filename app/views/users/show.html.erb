@@ -1,11 +1,46 @@
 <li><%= link_to "Friendships", user_friendships_path(@user) %>(<%= @user.friendships.count %>)</li>
 <%= link_to "create group", new_user_group_path(current_user) %> 
+<div>
+  <%= render "friend_form" if signed_in? %>
+</div>  
 <%= render "status/new" %>
 <% @statuses.each do |status| %>
 	<%= link_to @user.name, @user %>
-	<%= status.content %>
+  <div class="status_content" >
+	  <%= status.content.html_safe %></br>
+    <%= time_ago_in_words(status.created_at) %> ago
+    <% if current_user.like_statuses.liked(status.id).present? %>
+      <%= link_to "unlike",  user_status_like_status_path(current_user, status, current_user.like_statuses.liked(status.id).first), method: :delete %>
+    <% else %>
+      <%= link_to "like", user_status_like_statuses_path(current_user, status), method: :post %>
+    <% end %>
+    <%= status.like_statuses.count if status.like_statuses.count > 0  %>
+  </div>
+  <div class="status_comments">
+    <% status.comments.each do |comment| %>
+      <div class="status_comment">
+        <%= link_to comment.user.name, comment.user %>
+        <%= comment.content %></br>
+        <%= time_ago_in_words(comment.created_at) %> ago
+        <% if current_user.like_comments.liked(comment.id).present? %>
+          <%= link_to "unlike", user_status_comment_like_comment_path(current_user, status, comment, current_user.like_comments.liked(comment.id).first), method: :delete %>
+        <% else %>
+        <%= link_to "like", user_status_comment_like_comments_path(current_user, status, comment), method: :post %>
+        <% end %>
+        <%= comment.like_comments.count if comment.like_comments.count > 0  %>
+      </div>
+    <% end %>
+    <%= form_for [current_user, status, @comment] do |f|%>
+      <div class="comment">
+        <%= f.text_area :content, placeholder:"Write comment...", class: "comment_status", onkeyup:"textAreaAdjust(this)" %>
+        <%= f.submit "Post" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-
-<div class="span8">
-  <%= render "friend_form" if signed_in? %>
-</div>
+<script>
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (10+o.scrollHeight)+"px";
+}
+</script>

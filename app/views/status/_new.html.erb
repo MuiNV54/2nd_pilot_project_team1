@@ -1,6 +1,6 @@
 <%= form_for [current_user, @status] do |f| %>
   <div class="stt_area">
-    <%= f.text_area :content, style: "width: 400px"%>
+    <%= f.cktext_area :content, placeholder:"What are you feeling?" %>
   </div>
-	<div><%= f.submit "Submit" %></div>
+	<div><%= f.submit "Post" %></div>
 <% end %>

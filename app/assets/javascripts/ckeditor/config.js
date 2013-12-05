@@ -1,0 +1,1 @@
+config.removePlugins = 'elementspath,save,font';

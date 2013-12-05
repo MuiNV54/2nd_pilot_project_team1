@@ -18,6 +18,10 @@ gem "devise", :git => "git://github.com/plataformatec/devise.git", :ref => "49ae
 # Use sqlite3 as the database for Active Record
 gem "sqlite3"
 
+gem "carrierwave"
+gem "ckeditor"
+
+
 # Creates sample data for testing
 gem "faker", "1.1.2"
 
