@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204073611) do
+ActiveRecord::Schema.define(version: 20131204183422) do
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "status_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -27,6 +51,20 @@ ActiveRecord::Schema.define(version: 20131204073611) do
     t.datetime "updated_at"
   end
 
+  create_table "like_comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "like_statuses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "memberships", force: true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
@@ -36,7 +74,9 @@ ActiveRecord::Schema.define(version: 20131204073611) do
 
   create_table "statuses", force: true do |t|
     t.integer  "user_id"
-    t.string   "content"
+    t.text     "content"
+    t.integer  "host_id"
+    t.string   "permit",     limit: 1, default: "P"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
