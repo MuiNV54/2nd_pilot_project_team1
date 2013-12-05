@@ -1,4 +1,4 @@
-<%= form_for [current_user, @status] do |f| %>
+<%= form_for [@user, @status] do |f| %>
   <div class="stt_area">
     <%= f.cktext_area :content, placeholder:"What are you feeling?" %>
   </div>

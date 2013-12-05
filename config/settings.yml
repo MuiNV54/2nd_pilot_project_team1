@@ -1,0 +1,4 @@
+permit:
+  public: "P"
+  friend: "F"
+  private: "R"
