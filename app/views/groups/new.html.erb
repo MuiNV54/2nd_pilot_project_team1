@@ -1,0 +1,6 @@
+<%= form_for [current_user, @group] do |f| %>
+  <div class="stt_area">
+    <%= f.text_field :name %>
+  </div>
+	<div><%= f.submit "Create Group" %></div>
+<% end %>
