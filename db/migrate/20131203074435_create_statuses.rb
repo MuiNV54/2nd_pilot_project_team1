@@ -6,6 +6,10 @@ class CreateStatuses < ActiveRecord::Migration
 <<<<<<< HEAD
       t.integer :host_id
       t.string :permit, limit: 1,	default: Settings.permit.public
+<<<<<<< HEAD
+=======
+
+>>>>>>> Comments
 =======
 
 >>>>>>> Comments

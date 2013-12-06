@@ -14,7 +14,10 @@ if (typeof(CKEDITOR) != 'undefined') {
                 ];
             config.height = '80px';
             config.width = '100%'; 
-config.enterMode = CKEDITOR.ENTER_BR;
+   config.enterMode = CKEDITOR.ENTER_BR;
    config.shiftEnterMode = CKEDITOR.ENTER_BR;
    config.autoParagraph = false;
-  }
+   config.removePlugins = 'elementspath, contextmenu, liststyle, tabletools,';
+   config.resize_enabled = false;
+}
+}
