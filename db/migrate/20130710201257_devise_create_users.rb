@@ -5,7 +5,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name,               null: false
       t.string :email,              null: false, :default => ""
       t.string :encrypted_password, null: false, :default => ""
-      t.datetime :birthday,        null: false
+      t.datetime :birthday,         null: false
+      t.string :gender,             null: false
+      t.string :status_relationship
+      t.string :address
+      t.string :favorite_book
+      t.string :favorite_quote
+      t.string :permit, limit: 1, default: Settings.permit.public
 
       ## Recoverable
       t.string   :reset_password_token

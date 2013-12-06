@@ -1,0 +1,6 @@
+vi:
+  hello: "Hello world"
+
+  time:
+    formats:
+      default: "%d/%m/%Y"

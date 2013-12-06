@@ -13,5 +13,9 @@
 
   <%= f.password_field :password_confirmation, placeholder:"Confirm Password" %></br>
 
+  <%= f.radio_button :gender, "male" %> Male
+
+  <%= f.radio_button :gender, "female" %> Female
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
