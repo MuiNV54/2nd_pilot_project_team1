@@ -4,6 +4,7 @@ class Status < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :like_statuses, dependent: :destroy
   has_many :users, through: :like_statuses
+  validates :content, presence: true
 
   def get_permit string
     case string

@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :like_comments, dependent: :destroy
   has_many :liked_comments, through: :like_comments, source: :comment
 
+  validates :gender, presence: true
+
   def friended? other_user
     friendships.find_by friend_id: other_user.id
   end
@@ -24,5 +26,28 @@ class User < ActiveRecord::Base
 
   def unfriend! other_user
     friendships.find_by(friend_id: other_user.id).destroy!
+  end
+
+  def get_permit string
+    case string
+    when "public"
+      self.update_attributes permit: Settings.permit.public
+    when "friend"
+      self.update_attributes permit: Settings.permit.friend
+    when "private"
+      self.update_attributes permit: Settings.permit.private
+    end
+  end
+
+  def public?
+    permit == Settings.permit.public
+  end
+
+  def private?
+    permit == Settings.permit.private
+  end
+
+  def friend?
+    permit == Settings.permit.friend
   end
 end

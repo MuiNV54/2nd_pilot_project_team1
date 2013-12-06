@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20131204183422) do
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "status_id"
-    t.text     "content"
+    t.text     "content",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20131204183422) do
 
   create_table "statuses", force: true do |t|
     t.integer  "user_id"
-    t.text     "content"
+    t.text     "content",                            null: false
     t.integer  "host_id"
     t.string   "permit",     limit: 1, default: "P"
     t.datetime "created_at"
@@ -82,14 +82,20 @@ ActiveRecord::Schema.define(version: 20131204183422) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                                null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.datetime "birthday",                            null: false
+    t.string   "name",                                           null: false
+    t.string   "email",                            default: "",  null: false
+    t.string   "encrypted_password",               default: "",  null: false
+    t.datetime "birthday",                                       null: false
+    t.string   "gender",                                         null: false
+    t.string   "status_relationship"
+    t.string   "address"
+    t.string   "favorite_book"
+    t.string   "favorite_quote"
+    t.string   "permit",                 limit: 1, default: "P"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                    default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -99,7 +105,7 @@ ActiveRecord::Schema.define(version: 20131204183422) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0
+    t.integer  "failed_attempts",                  default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"

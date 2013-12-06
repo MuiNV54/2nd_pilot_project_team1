@@ -6,6 +6,9 @@ DeviseExample::Application.routes.draw do
     get "sign_in", :to => "devise/sessions#new"
   end
   resources :users do
+    member do
+      get "profile"
+    end
  	  resources :friendships
  	  resources :groups
  	  resources :statuses do

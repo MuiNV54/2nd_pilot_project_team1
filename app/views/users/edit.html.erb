@@ -1,0 +1,35 @@
+<h3>Change Users Profile</h3>
+
+<%= form_for edit_user_path(current_user) do |f| %>
+
+  <%= f.label :name %></div>
+  <%= f.text_field :name %></div>
+  <%= current_user.name %>
+
+  <%= f.label :email %></div>
+  <%= f.email_field :email %></br>
+  <%= current_user.email %>
+
+  <%= f.label :birthday %></div>
+  <%= f.date_field :birthday %></br>
+  <%= I18n.l current_user.birthday %><br>
+
+  <%= f.radio_button :gender, "male" %> Male
+  <%= f.radio_button :gender, "female" %> Female<br>
+  <%= current_user.gender %>
+
+  <%= f.label :status_relationship %></div>
+  <%= f.text_area :status_relationship %></div>
+
+  <%= f.label :address %></div>
+  <%= f.text_area :address %></div>
+
+  <%= f.label :favorite_book %></div>
+  <%= f.text_area :favorite_book %></div>
+
+  <%= f.label :favorite_quote %></div>
+  <%= f.text_area :favorite_quote %></div>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+<%= link_to "Back", :back %>

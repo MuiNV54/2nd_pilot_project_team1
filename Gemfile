@@ -21,6 +21,7 @@ gem "sqlite3"
 gem "carrierwave"
 gem "ckeditor"
 
+gem "ransack"
 
 # Creates sample data for testing
 gem "faker", "1.1.2"
