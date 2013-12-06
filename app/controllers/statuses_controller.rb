@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
         @status.update_attribute :user_id, @user.id
       end
   	end
-  	redirect_to user_path(@user)
+  	redirect_to :back
   end
 
   def edit
@@ -30,7 +30,7 @@ class StatusesController < ApplicationController
     else
       @status.update_attributes status_params
     end
-    redirect_to user_path @user
+    redirect_to :back
   end
 
   def destroy

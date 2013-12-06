@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
   def show
   	@user = User.find params[:id]
-    @statuses = @user.statuses
+    @statuses = Status.all
   	@status = Status.new
   	@group  = Group.new
   	@user_friendship = current_user.friendships
@@ -11,6 +11,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def search_auto
+    if params[:name].present?
+      users = User.where("name LIKE ?", "%#{params[:name]}%").limit(4)
+      if users
+        data = users.map{|u| {name: u.name, id: u.id} }
+        render json: data
+      else
+        render nothing:true
+      end
+    end
   end
 
   def update
@@ -28,7 +40,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit :name, :email, :birthday, :gender,
+    params.require(:user).permit :name, :birthday, :gender,
       :status_relationship, :address, :favorite_book, :favorite_quote
   end
 end

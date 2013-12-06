@@ -1,4 +1,0 @@
-<%= form_for [current_user, @status] do |f| %>
-    <%= f.cktext_area :content, :ckeditor => {:toolbar => "MyToolbar"}, placeholder:"What are you feeling?" %>
-	<div><%= f.submit "Post" %></div>
-<% end %>

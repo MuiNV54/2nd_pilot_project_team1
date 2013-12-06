@@ -1,6 +1,15 @@
-<%= form_for [@user, @status] do |f| %>
-  <div class="stt_area">
-    <%= f.cktext_area :content, placeholder:"What are you feeling?" %>
-  </div>
-	<div><%= f.submit "Post" %></div>
+<% if @user %>	
+	<%= form_for [@user, @status] do |f| %>
+	  <div class="stt_area">
+	    <%= f.cktext_area :content, placeholder:"What are you feeling?" %>
+	  </div>
+		<div><%= f.submit "Post" %></div>
+	<% end %>
+<% else %>
+	<%= form_for [current_user, @status] do |f| %>
+	  <div class="stt_area">
+	    <%= f.cktext_area :content, placeholder:"What are you feeling?" %>
+	  </div>
+		<div><%= f.submit "Post" %></div>
+	<% end %>
 <% end %>
