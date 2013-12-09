@@ -1,1 +1,87 @@
-<p>Hello World!</p>
+<%= render "statuses/new" %>
+<% @statuses.order_desc_created_at.each do |status| %>
+  <% if current_user.id == status.user_id || current_user.id == status.host_id  || status.status_host.friended?(current_user) || status.user.friended?(current_user) || status.shared_by?(current_user) || status.create_by_friend_of?(current_user) %>
+    <% if status.create_by_friend? %>
+      <%= link_to status.status_host.name, status.status_host %> to <%= link_to status.user.try(:name), status.user %>
+    <% else %>
+      <%= link_to status.user.name, status.user %>
+    <% end %>
+    <div class="status_content" >
+      <%= status.content.html_safe %></br>
+      <%= time_ago_in_words status.created_at %> ago
+      <% if current_user.like_statuses.liked(status.id).present? %>
+        <%= link_to "unlike", user_status_like_status_path(current_user, status, current_user.like_statuses.liked(status.id).first), method: :delete %>
+      <% else %>
+        <%= link_to "like", user_status_like_statuses_path(current_user, status), method: :post %>
+      <% end %>
+      <%= link_to "share", user_status_shares_path(current_user, status), method: :post %> 
+      <% if status.share_by_users.count > 0 %>
+        (<%= status.share_by_users.count %>)
+      <% end %>
+      <%= status.like_statuses.count if status.like_statuses.count > 0  %>
+      <% if status.user_id == current_user.id %>
+          <%= link_to "edit", "#", class: "non-redirect edit_status_btn" %>        
+          <%= link_to "delete", user_status_path(@user, status), method: :delete, confirm: "Are you sure?" %>
+      <% end %>
+    </div>
+    <div class="edit_status_wrap" style="display: none" >
+      <%= form_for [current_user, status] do |f| %>
+        <%= f.text_area :content, class:"ckeditor" %>
+        <%= f.submit "Edit status" %>
+        <%= link_to "Cancel", :back %>
+      <% end %>
+    </div>
+    <div class="status_comments">
+      <% status.comments.each do |comment| %>
+        <div class="status_comment">
+          <%= link_to comment.user.name, comment.user %>
+          <%= comment.content %></br>
+          <%= time_ago_in_words(comment.created_at) %> ago
+          <% if current_user.like_comments.liked(comment.id).present? %>
+            <%= link_to "unlike", user_status_comment_like_comment_path(current_user, status, comment, current_user.like_comments.liked(comment.id).first), method: :delete %>
+          <% else %>
+          <%= link_to "like", user_status_comment_like_comments_path(current_user, status, comment), method: :post %>
+          <% end %>
+          <%= comment.like_comments.count if comment.like_comments.count > 0  %>
+          <% if status.user_id == current_user.id || comment.user_id == current_user.id %>
+            <%= link_to "edit", "#", class: "non-redirect edit_comment_btn" %>
+            <%= link_to "delete", user_status_comment_path(current_user, status, comment), method: :delete, confirm: "Are you sure?" %> 
+          <% end %>
+        </div>
+        <div class="edit_comment_wrap" style="display: none" >
+          <%= form_for [current_user, status, comment] do |f| %>
+            <%= f.text_area :content %>
+            <%= f.submit "Edit comment" %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= form_for [current_user, status, @comment] do |f|%>
+        <div class="comment">
+          <%= f.text_area :content, placeholder:"Write comment...", class: "comment_status", onkeyup:"textAreaAdjust(this)" %>
+          <%= f.submit "Post" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (10+o.scrollHeight)+"px";
+}
+
+$("a.non-redirect").click(function(event){
+    event.preventDefault();
+});
+
+$('.edit_status_btn').click(function() {
+  $(this).parent().hide();
+  $(this).parent().next('.edit_status_wrap').show();
+});
+
+$('.edit_comment_btn').click(function() {
+  $(this).parent().hide();
+  $(this).parent().next('.edit_comment_wrap').show();
+});
+</script>

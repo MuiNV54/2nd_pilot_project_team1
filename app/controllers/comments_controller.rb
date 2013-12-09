@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @status = Status.find params[:status_id]
     @comment = Comment.find params[:id]
     if @comment.update_attributes content: params[:comment][:content]
-      redirect_to user_path @user
+      redirect_to :back
     end
   end
 

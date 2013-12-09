@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :like_statuses, dependent: :destroy
   has_many :liked_statuses, through: :like_statuses, source: :status
   has_many :like_comments, dependent: :destroy
+  has_many :shares
+  has_many :share_statuses, through: :shares, dependent: :destroy, source: :status
   has_many :liked_comments, through: :like_comments, source: :comment
 
   validates :gender, presence: true
