@@ -1,17 +1,22 @@
 class LikeStatusesController < ApplicationController
   def new
   end
-  def create
-    like_status = LikeStatus.new user_id: params[:user_id],
-      status_id: params[:status_id]
-    if like_status.save
 
+  def like_or_unlike
+    if params[:user_id] && params[:status_id]
+      like_status = LikeStatus
+        .find_by_user_id_and_status_id params[:user_id],params[:status_id]
+      if like_status
+        like_status.destroy
+        message = "Like"
+      else
+        new_like = LikeStatus.new user_id: params[:user_id], 
+          status_id: params[:status_id]
+        new_like.save
+        message = "Unlike"
+      end
     end
-    redirect_to :back
-  end
-
-  def destroy
-    LikeStatus.find(params[:id]).destroy
-    redirect_to :back
+    num = Status.find(params[:status_id]).like_statuses.count
+    render json: {message: message, num: num}
   end
 end

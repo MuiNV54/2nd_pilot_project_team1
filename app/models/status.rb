@@ -60,4 +60,8 @@ class Status < ActiveRecord::Base
   def friend?
   	permit == Settings.permit.friend
   end
+
+  def liked? user
+    like_statuses.find_by user_id: user.id
+  end
 end
