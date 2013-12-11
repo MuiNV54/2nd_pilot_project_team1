@@ -15,11 +15,18 @@ DeviseExample::Application.routes.draw do
  	  resources :friendships
  	  resources :groups
  	  resources :statuses do
-      resources :like_statuses
-      resources :comments do
-        resources :like_comments
-      end
+      resources :comments
       resources :shares
+    end
+  end
+  resources :like_statuses do
+    collection do
+      get :like_or_unlike
+    end
+  end
+  resources :like_comments do
+    collection do
+      get :like_or_unlike
     end
   end
 end

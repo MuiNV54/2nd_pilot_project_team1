@@ -7,11 +7,11 @@ class SharesController < ApplicationController
       status_id: params[:status_id]
     if share_status.save
     end
-    redirect_to :back
+    redirect_to user_path(current_user)
 	end
 
 	def destroy
     Share.find(params[:id]).destroy
-    redirect_to :back
+    redirect_to user_path(current_user)
   end
 end

@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
   has_many :users, through: :like_comments
 
   validates :content, presence: true
+
+  def liked_by? user
+    like_comments.find_by user_id: user.id
+  end
 end
