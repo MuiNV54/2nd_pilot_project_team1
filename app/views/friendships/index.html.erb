@@ -4,3 +4,5 @@
 <% @user.friendships.each do |friendship| %>
   <li><%= link_to friendship.friended.name, friendship.friended %></li>
 <% end %>
+
+<%= render "invite_friend" %>

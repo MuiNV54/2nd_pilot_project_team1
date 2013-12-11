@@ -46,7 +46,7 @@
       <div class="status-meta" >
         <% if current_user.id == status.host_id && current_user?(@user) %>
           <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">permission<b class="caret"></b></a>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">policy<b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><%= link_to "public", user_status_path(@user, status, flag: "public"), method: :patch %></li>
               <li><%= link_to "friend", user_status_path(@user, status, flag: "friend"), method: :patch %></li>
@@ -121,6 +121,7 @@
     <% end %>
   <% end %>
 <% end %>
+
 <script type="text/javascript">
   function like_or_unlike_status(user_id, status_id,btn){
     $.ajax({
@@ -154,6 +155,10 @@
   }
 </script>
 <script>
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (10+o.scrollHeight)+"px";
+}
 function textAreaAdjust(o) {
     o.style.height = "1px";
     o.style.height = (10+o.scrollHeight)+"px";

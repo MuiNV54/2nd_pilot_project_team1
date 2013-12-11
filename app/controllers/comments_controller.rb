@@ -7,8 +7,11 @@ class CommentsController < ApplicationController
   def create
     if params[:comment]
       @comment = Comment.new params.require(:comment).permit :content, :status_id
+      status = Status.find params[:status_id]
+      user = status.status_host
       if @comment.save
         @comment.update_attributes user_id: current_user.id, status_id: params[:status_id]
+        Activity.comment_status! current_user, user
       end
     end
     redirect_to :back
