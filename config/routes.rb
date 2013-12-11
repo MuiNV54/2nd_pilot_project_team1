@@ -17,6 +17,7 @@ DeviseExample::Application.routes.draw do
         resources :comment_images
       end
     end
+    resources :activities
  	  resources :friendships
  	  resources :groups
  	  resources :statuses do

@@ -5,6 +5,7 @@ class LikeStatusesController < ApplicationController
 
   def like_or_unlike
     if params[:user_id] && params[:status_id]
+      status = Status.find params[:status_id]
       like_status = LikeStatus
         .find_by_user_id_and_status_id params[:user_id],params[:status_id]
       if like_status
@@ -15,6 +16,7 @@ class LikeStatusesController < ApplicationController
           status_id: params[:status_id]
         new_like.save
         message = "Unlike"
+        Activity.like_status! current_user, status.status_host
       end
     end
     num = Status.find(params[:status_id]).like_statuses.count

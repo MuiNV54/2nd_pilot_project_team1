@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
   end
 
   def unfriend! other_user
-    friendships.find_by(friend_id: other_user.id).destroy!
+    if friendships.find_by(friend_id: other_user.id)
+      friendships.find_by(friend_id: other_user.id).destroy!
+    end
   end
 
   def get_permit string

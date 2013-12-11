@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     else
       current_user.update_attributes user_params
     end
+    Activity.user_edit_profile! current_user
     redirect_to user_path current_user
   end
 

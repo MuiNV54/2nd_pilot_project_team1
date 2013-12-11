@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   	@status = Status.new
   	@group  = Group.new
     @comment = Comment.new
+    @friendships = Friendship.all
   end
 
   def token

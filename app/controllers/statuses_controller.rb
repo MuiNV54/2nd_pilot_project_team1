@@ -11,8 +11,10 @@ class StatusesController < ApplicationController
   		@status.update_attribute :host_id, current_user.id
       if current_user == @user
         @status.update_attribute :user_id, current_user.id
+        Activity.post_status! current_user, current_user
       else
         @status.update_attribute :user_id, @user.id
+        Activity.post_status! current_user, @user
       end
   	end
   	redirect_to :back
