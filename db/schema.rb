@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209061058) do
+ActiveRecord::Schema.define(version: 20131210060629) do
+
+  create_table "albums", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -28,6 +36,14 @@ ActiveRecord::Schema.define(version: 20131209061058) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+
+  create_table "comment_images", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "image_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -46,6 +62,14 @@ ActiveRecord::Schema.define(version: 20131209061058) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "photo"
+    t.integer  "album_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -99,6 +123,8 @@ ActiveRecord::Schema.define(version: 20131209061058) do
     t.string   "favorite_book"
     t.string   "favorite_quote"
     t.string   "permit",                 limit: 1, default: "P"
+    t.string   "avatar"
+    t.string   "cover"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

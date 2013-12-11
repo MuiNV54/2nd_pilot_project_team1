@@ -15,7 +15,11 @@ class User < ActiveRecord::Base
   has_many :shares
   has_many :share_statuses, through: :shares, dependent: :destroy, source: :status
   has_many :liked_comments, through: :like_comments, source: :comment
-
+  has_many :albums, dependent: :destroy
+  has_many :images, dependent: :destroy
+  has_many :comment_images, dependent: :destroy
+  mount_uploader :avatar, ImageUploader
+  mount_uploader :cover, ImageUploader
   validates :gender, presence: true
 
   def friended? other_user

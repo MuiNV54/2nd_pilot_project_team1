@@ -1,25 +1,49 @@
-<li><%= link_to "Friendships", user_friendships_path(@user) %>(<%= @user.friendships.count %>)</li>
-<li><%= link_to "View profile", profile_user_path(@user) %></li>
-<%= link_to "create group", new_user_group_path(current_user) %> 
+<li><%= link_to "Friends", user_friendships_path(@user) %>(<%= @user.friendships.count %>)</li>
+<li><%= link_to "View profile", profile_user_path(@user) %></li> 
+<%= link_to "Albums", user_albums_path(@user) %>
+<% if @user.albums.count > 0 %>
+  (<%= @user.albums.count %>)</br>
+  <% end %>
+<% if current_user?(@user) %>
+  <%= link_to "Create group", new_user_group_path(current_user) %> 
+<% end %>
 <div>
   <%= render "friend_form" if signed_in? %>
 </div>
 <% if current_user.friended?(@user) || current_user?(@user) %>
   <%= render "statuses/new" %>
 <% end %>
-<div class="user_profile">
-  <%= render "shared/extand_profile" %>
-</div>
 <% @statuses.order_desc_created_at.each do |status| %>
   <% if status.shared_by?(@user) || status.concern?(@user) %>
     <% if current_user?(@user) || (current_user.friended?(@user) && status.friend?) || status.public? %>
       <% if status.create_by_friend? %>
-  	    <%= link_to status.status_host.name, status.status_host %> to <%= link_to status.user.name, status.user %>
+        <div class="status-image">
+          <% if status.user.avatar? %>
+            <%= link_to image_tag(status.user.avatar.avatar), status.user %>
+          <% else %>
+            <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), status.user %>
+          <% end %>
+        </div>
+  	    <%= link_to status.status_host.name, status.status_host %> to <%= link_to status.user.name, status.user %> <br/>
+        <%= status.content.html_safe %>
       <% else %>
-        <%= link_to status.user.name, status.user %>
+      <div class="status-image">
+        <% if status.user.avatar? %>
+          <%= link_to image_tag(status.user.avatar.avatar), status.user %>
+        <% else %>
+          <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), status.user %>
+        <% end %>
+      </div>
+      <div class="status-content-wrap">
+        <div class="name">          
+          <%= link_to status.user.name, status.user %> </br>
+        </div>
+        <div class="status-content">
+          <%= status.content.html_safe %>
+        </div>
+      </div>
       <% end %>
-      <div class="status_content" >
-    	  <%= status.content.html_safe %></br>
+      <div class="status-meta" >
         <% if current_user.id == status.host_id && current_user?(@user) %>
           <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">permission<b class="caret"></b></a>
@@ -37,7 +61,7 @@
           <% else %>
             Like
           <% end %>
-        </a>
+         </a>
         <span class="num"><%= status.like_statuses.count if status.like_statuses.count > 0  %></span>
         <%= link_to "share", user_status_shares_path(current_user, status), method: :post, confirm: "Do you want share this status in your wall?" %> 
         <%= status.share_by_users.count if status.share_by_users.count > 0 %>
@@ -48,21 +72,27 @@
             <%= link_to "edit", "#", class: "non-redirect edit_status_btn" %>        
             <%= link_to "delete", user_status_path(@user, status), method: :delete, confirm: "Are you sure?" %>
         <% end %>
+        <div class="edit_status_wrap" style="display: none" >
+          <%= form_for [current_user, status] do |f| %>
+            <%= f.text_area :content, class:"ckeditor" %>
+            <%= f.submit "Edit status" %>
+          <% end %>
+        </div>        
       </div>
-      <div class="edit_status_wrap" style="display: none" >
-        <%= form_for [current_user, status] do |f| %>
-          <%= f.text_area :content, class:"ckeditor" %>
-          <%= f.submit "Edit status" %>
-          <%= link_to "Cancel", :back %>
-        <% end %>
-      </div>
-      <div class="status_comments">
+      <div class="status-comments">
         <% status.comments.each do |comment| %>
-          <div class="status_comment">
-            <%= link_to comment.user.name, comment.user %>
+          <div class="status-comment">
+            <div class="name">
+              <% if comment.user.avatar? %>
+                <%= link_to image_tag(comment.user.avatar.small_avatar), comment.user %>
+              <% else %>
+                <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 32px" ), status.user %>
+              <% end %>
+              <%= link_to comment.user.name, comment.user %>
+            </div>
             <%= comment.content %></br>
             <%= time_ago_in_words(comment.created_at) %> ago
-            <a onclick= "like_or_unlike_comment(<%= current_user.id %>,<%= comment.id %>,this)">
+            <a onclick= "like_or_unlike_comment(<%= current_user.id %>,<%= comment.id %>,this)" >
               <% if comment.liked_by? current_user %>
                 Unlike
               <% else %>
@@ -85,7 +115,6 @@
         <%= form_for [current_user, status, @comment] do |f|%>
           <div class="comment">
             <%= f.text_area :content, placeholder:"Write comment...", class: "comment_status", onkeyup:"textAreaAdjust(this)" %>
-            <%= f.submit "Post" %>
           </div>
         <% end %>
       </div>
@@ -129,6 +158,15 @@ function textAreaAdjust(o) {
     o.style.height = "1px";
     o.style.height = (10+o.scrollHeight)+"px";
 }
+$(".comment_status").on("keydown", function(e){
+
+  if(e.keyCode ==13)
+  {
+    // $(".new_comment").submit();
+  var form = this.parentNode.parentNode;
+  $(form).submit();
+  }
+});
 
 $("a.non-redirect").click(function(event){
     event.preventDefault();

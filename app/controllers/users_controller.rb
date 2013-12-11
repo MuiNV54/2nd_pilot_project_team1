@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find params[:id]
   end
 
   def search_auto
@@ -41,6 +42,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit :name, :birthday, :gender,
-      :status_relationship, :address, :favorite_book, :favorite_quote
+      :status_relationship, :address, :favorite_book, :favorite_quote, :avatar, :cover
   end
 end

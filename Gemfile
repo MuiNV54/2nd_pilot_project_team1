@@ -17,10 +17,11 @@ gem "devise", :git => "git://github.com/plataformatec/devise.git", :ref => "49ae
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3"
-
+gem "mini_magick"
 gem "carrierwave"
 gem "ckeditor"
-
+gem 'fancybox2-rails'
+gem "sass-rails", "~> 4.0.0"
 gem "ransack"
 
 # Creates sample data for testing

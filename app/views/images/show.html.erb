@@ -1,0 +1,29 @@
+<div class="abc">
+  <div class="img_tag">
+    <%= image_tag @image.photo.avatar %>
+  </div>
+  <div class="comment_image">
+    <%= link_to @image.album.user.name, @image.album.user %>
+    <%= @image.album.title %></br>
+    <%= @image.album.description.html_safe %>
+    <% @image.comment_images.each do |comment_image| %>
+      <div>
+        <%= link_to comment_image.user.name, comment_image.user, target: "_blank" %>
+        <%= comment_image.content %>
+      </div>
+    <% end %>
+    <%= render "new_comment" %>
+  </div>
+</div>
+<style>
+  .abc{
+    height: 500px;
+  }
+  .abc img{
+    float: left;
+  }
+  .comment_image textarea {
+    height: 40px;
+    width: 300px;
+  }
+</style>

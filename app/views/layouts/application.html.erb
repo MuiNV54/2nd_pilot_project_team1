@@ -37,53 +37,26 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <% if user_signed_in? %>
-                <%= render "users/condition_fields" %>
-                <li><%= link_to current_user.name, current_user %></li>
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-              <% else %>
-                <li><%= link_to "Sign in", new_user_session_path %></li>
-                <li><%= link_to "Sign up", new_user_registration_path %></li>
-              <% end %>
-
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    
+    <%= render"shared/header" %>
       <div class="container-fluid">
         <div class="row-fluid">
           <div class="span3">
-            <% if user_signed_in? %>
+          <% if user_signed_in? %>
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
+                <%= render"users/info_user" %>
                 <li class="nav-header">Sidebar</li>
-                <li><%= render "groups/index" %>
               </ul>
             </div><!--/.well -->
-                  <% end %>
+          <% end %>
           </div><!--/span-->
-          <div class="span9">
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
+            <div class="span9">
+              <%= bootstrap_flash %>
+              <%= yield %>
+            </div>
         </div><!--/row-->
-
-
       <footer>
-        <p>&copy; Company 2013</p>
+        <center><p>&copy; Mui ngu 2013</p></center>
       </footer>
 
     </div> <!-- /container -->
