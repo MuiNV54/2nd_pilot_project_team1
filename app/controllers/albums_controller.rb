@@ -16,10 +16,12 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(params_album)
-    @album.update_attribute(:user_id, params[:user_id])
-    if @album.save
-      flash[:success] = "Created album"
+    if params[:album][:title].present?
+      @album = Album.new(params_album)
+      @album.update_attribute(:user_id, params[:user_id])
+      if @album.save
+        flash[:success] = "Created album"
+      end
     end
     redirect_to :back
   end

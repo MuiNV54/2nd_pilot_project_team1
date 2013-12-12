@@ -1,8 +1,9 @@
 <h3>All Activities</h3>
 <ul>
-	<li>
-		<% Activity.all.order_desc_created_at.each do |activity| %>
-		  <% if activity.user.friended? current_user %>
+	<% Activity.all.order_desc_created_at.each do |activity| %>
+	  <% if activity.user.friended? current_user %>
+	  	<li>
+	  		<%= link_to small_avatar(activity.user), activity.user %>
 		  	<% case activity.temtype %>
 		  	<% when "EDIT_PROFILE" %>
 		  		<%= link_to activity.user.name, activity.user %> was updated profile
@@ -16,9 +17,9 @@
 		  		<%= link_to activity.user.name, activity.user %> liked a status of <%= link_to activity.effect_user.name, activity.effect_user %>
 		  	<% when "SHARE__STATUS" %>
 		  		<%= link_to activity.user.name, activity.user %> shared a status of <%= link_to activity.effect_user.name, activity.effect_user %>
-		 	<% end %>
+		<% end %>
 		 	<%= time_ago_in_words activity.created_at %> ago
+		 	</li>
 		<% end %>
-		<% end %>
-	</li>
+	<% end %>
 </ul>

@@ -1,8 +1,10 @@
 <% provide(:title, "All friend") %>
-<h1>All friends (<%= @user.friendships.count %>)</h1>
+<h3>All friends (<%= @user.friendships.count %>)</h3>
 
 <% @user.friendships.each do |friendship| %>
-  <li><%= link_to friendship.friended.name, friendship.friended %></li>
+  <div>
+    <%= link_to gravatar_for(friendship.friended), friendship.friended %>
+    <%= link_to friendship.friended.name, friendship.friended %>
+  </div>
 <% end %>
-
 <%= render "invite_friend" %>

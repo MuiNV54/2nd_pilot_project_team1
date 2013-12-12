@@ -1,13 +1,15 @@
 <div class="abc">
   <div class="img_tag">
-    <%= image_tag @image.photo.avatar %>
+    <%= image_tag @image.photo %>
   </div>
   <div class="comment_image">
+    <%= link_to gravatar_for(@image.album.user), @image.album.user %>
     <%= link_to @image.album.user.name, @image.album.user %>
     <%= @image.album.title %></br>
     <%= @image.album.description.html_safe %>
     <% @image.comment_images.each do |comment_image| %>
       <div>
+        <%= link_to small_avatar(comment_image.user), comment_image.user %>
         <%= link_to comment_image.user.name, comment_image.user, target: "_blank" %>
         <%= comment_image.content %>
       </div>

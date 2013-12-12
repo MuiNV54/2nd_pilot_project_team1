@@ -1,6 +1,9 @@
-<h1> all invite friend </h1>
+<h3> All invite friend </h3>
 <% @users.each do |user| %>
 	<% if user.friended?(current_user) && !current_user.friended?(user) %>
+    <div class="status-image">
+      <%= link_to gravatar_for(user), user %>
+    </div>
 		<%= link_to user.name, user %>
 		<%= form_for [current_user, @user_friendship.build(friend_id: user.id)] do |f| %>
 		  <%= f.hidden_field :friend_id %><%= f.submit "accept invite", class: "btn btn-tiny btn-primary" %>

@@ -11,21 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131210060629) do
-
-  create_table "albums", force: true do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "description"
-=======
 ActiveRecord::Schema.define(version: 20131211075812) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
     t.integer  "effect_user_id"
     t.string   "temtype"
->>>>>>> activities
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "albums", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

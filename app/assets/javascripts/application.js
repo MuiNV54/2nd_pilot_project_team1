@@ -18,4 +18,5 @@
 //= require fancybox
 //= require_tree .
 //= require ckeditor/init
+//= require jquery.turbolinks
 
