@@ -16,7 +16,9 @@ gem "bootstrap-will_paginate", "0.0.9"
 gem "devise", :git => "git://github.com/plataformatec/devise.git", :ref => "49aebde"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3"
+group :development do
+	gem "sqlite3"
+end
 gem "mini_magick"
 gem "carrierwave"
 gem "ckeditor"
@@ -61,7 +63,10 @@ gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-
+group :production do
+  gem "pg", "0.15.1"
+  gem "rails_12factor", "0.0.2"
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 
