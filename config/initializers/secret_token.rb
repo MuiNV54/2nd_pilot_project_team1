@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FacebookApp::Application.config.secret_key_base = 'd02705ee8d4c3fab2327591203b86f665c684a448d18c50b57d91b51257650240408caa262b6b955cb3bd1caab99869b81ed79e6b15b82df17521c24e49ea504'
+DeviseExample::Application.config.secret_key_base = 'e5df37d3c04900f9e4cb0e2cfe6dd0d45aeadaffaa1412b87b4f72a4b82eb7f3e533770770ba950a52e8df2e40ca52fe6c7df3875b78b6e493a64acc00f51b55'

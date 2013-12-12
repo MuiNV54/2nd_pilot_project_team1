@@ -1,0 +1,223 @@
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// Font Awesome
+@import "fontawesome/font-awesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+.comment > textarea {
+  height: 20px;
+  width: 450px;
+  resize:vertical;
+}
+.status_content {
+  word-wrap: break-word;      
+  white-space: -moz-pre-wrap;
+}
+
+.row-fluid .span9 {
+  width: 600px;
+  word-wrap: break-word;      
+  white-space: -moz-pre-wrap;
+}
+
+.comment > input {
+  vertical-align: baseline;
+}
+
+#ui-id-2 {
+cursor: pointer;
+}
+
+textarea {
+  width: 250px;
+}
+
+#edit_user_2 > input {
+  width: 300px;
+}
+
+.button > input {
+  margin: 0;
+}
+
+.avatar > img{
+  border: 0 none;
+  height: 160px;
+  vertical-align: middle;
+  width: 160px;
+  cursor: pointer
+}
+#no_cover{
+  background-color: #D5D6D9;
+  border: medium none;
+  height: 160px;
+  position: relative;
+  margin-bottom: 35px;
+}
+.cover > img{
+    height: 200px;
+    width: 600px;
+}
+.album img{
+  width: 160px;
+  height: 160px;
+}
+#new_image > img{
+    cursor: pointer;
+}
+.status_content > a{
+  cursor: pointer;
+}
+.status_comment > a{
+  cursor: pointer;
+}
+
+.date_select select {
+    width: 100px;
+}
+.navbar-inner {
+    height: 50px;
+}
+.ui-autocomplete-input {
+  margin-top: 10px;
+  width: 300px;
+}
+.navbar-inner{
+  background: none repeat scroll 0 0 #3B5998;
+  color: white;
+}
+
+.navbar .nav > li > a {
+    color: white;
+    float: none;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-shadow: 0 0 0 #FFFFFF;
+}
+.navbar .nav > li > a:hover{
+  background: none repeat scroll 0 0 #3B5998;
+  color: white;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: #3B5998;
+    color: white;
+}
+#new_status input{
+  margin-top: 5px;
+  background: none repeat scroll 0 0 #3B5998;
+  width: 70px;
+  height: 30px;
+  color: white;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  float: right;
+}
+
+.cke_toolgroup {
+    margin-bottom: 0;
+}
+.cke_contents{
+  margin:5px;background-color:blue;
+}
+.cke_top.cke_reset_all {
+  background: none repeat scroll 0 0 #3B5998;
+  border-bottom: 1px solid #FFD1A3;
+  box-shadow: 0 1px 0 #FFFFFF inset;
+  padding: 6px 8px 2px;
+  white-space: normal;
+}
+.cke_chrome{
+  border: 1px solid #660033;
+}
+.well.sidebar-nav{
+    background-color: #FFFFFF;
+    border: 0px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: 0 0px 0px;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+.search {
+    float: left;
+}
+.avatar-header{
+  float: left;
+}
+a {
+  color: #3B5998;
+}
+.name > a {
+    font-weight: bold;
+} 
+.row-fluid{
+  font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+.status-image {
+  float: left;
+}
+
+.status-content-wrap, .status-meta, .status-comments {
+  margin-left: 60px;
+  list-style-type: none;
+}
+
+.status-comments {
+  font-size: 13px;
+}
+.status-image img {
+    padding-right: 10px;
+}
+.search > div {
+    margin-left: 140px;
+    margin-right: 160px;
+}
+
+.status-meta > a {
+    cursor: pointer;
+}
+
+.status-comment > a {
+    cursor: pointer;
+}

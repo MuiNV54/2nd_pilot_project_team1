@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 FacebookApp::Application.configure do
+=======
+DeviseExample::Application.configure do
+>>>>>>> develop
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -26,4 +30,9 @@ FacebookApp::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+<<<<<<< HEAD
+=======
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+>>>>>>> develop
 end

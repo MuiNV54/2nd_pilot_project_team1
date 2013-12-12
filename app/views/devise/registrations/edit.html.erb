@@ -1,0 +1,17 @@
+<h3>Change Password</h3>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, :autocomplete => "off", placeholder:"New password" %></div>
+
+  <div>
+  <%= f.password_field :password_confirmation, placeholder:"Confirm new password" %></div>
+
+  <div><i>(We need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password, placeholder:"Old password" %></div>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+<%= link_to "Back", :back %>

@@ -1,0 +1,14 @@
+<ul>
+  <% if @user.status_relationship.present? %>
+    <li>User status relationship: <%= @user.status_relationship %></li>
+  <% end %>
+  <% if @user.address.present? %>
+    <li>User address: <%= @user.address %></li>
+  <% end %>
+  <% if @user.favorite_book.present? %>
+    <li>User favorite book: <%= @user.favorite_book %></li>
+  <% end %>
+  <% if @user.favorite_quote.present? %>
+    <li>User favorite quote: <%= @user.favorite_quote %></li>
+  <% end %>
+</ul>

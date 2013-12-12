@@ -1,0 +1,28 @@
+<h3>Change Users Profile</h3>
+<div class="edit_profile">
+<%= form_for current_user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <div><%= f.label :birthday %>
+  <div class="date_select">
+    <%= f.date_select :birthday, order: [:day, :month, :year] %>
+  </div>
+  <%= f.radio_button :gender, "male" %> Male
+  <%= f.radio_button :gender, "female" %> Female<br>
+
+  <div><%= f.label :status_relationship %>
+  <%= f.text_area :status_relationship %></div>
+
+  <div><%= f.label :address %>
+  <%= f.text_area :address %>
+
+  <%= f.label :favorite_book %>
+  <%= f.text_area :favorite_book %>
+
+  <%= f.label :favorite_quote %>
+  <%= f.text_area :favorite_quote %>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+<%= link_to "Cancel", :back %>

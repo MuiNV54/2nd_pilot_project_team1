@@ -1,0 +1,39 @@
+<% if @user.avatar? %>
+  <div class="avatar">
+    <%= image_tag @user.avatar, id: "avatar", title: 'Click to change avatar', rel: 'tooltip' %>
+  </div>
+<% else %>
+  <%= image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", id: "avatar", title: 'Click to change avatar', rel: 'tooltip' %>
+<% end %>
+<% if current_user? @user %>
+  <%= form_for current_user, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :avatar, id: "btn_change_avatar" , style: "display: none", accept: "image/*" %>
+  <% end %>
+  <%= link_to "Edit profile", edit_user_path(current_user) %>
+<% end %>
+<ul>
+  <li>User name: <%= @user.name %></li>
+  <li>User email: <%= @user.email %></li>
+  <li>User birthday: <%= I18n.l @user.birthday %></li>
+  <li>User gender: <%= @user.gender %></li>
+</ul>
+<script>
+  $(function(){
+    $("#btn_change_avatar").change(function(){
+      if (this.files && this.files[0]){
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $("#avatar")
+            .attr('src', e.target.result)
+            .width(200)
+            .height(250);
+          };
+        reader.readAsDataURL(this.files[0]);
+        $(".edit_user").submit();
+      }
+    });
+    $("#avatar").click(function () {
+    $("#btn_change_avatar").trigger('click');
+    });
+  });
+</script>

@@ -1,0 +1,24 @@
+<% if current_user?(@user) || @user.public? || (current_user.friended?(@user) && @user.friend?) %>
+  <div class="status_content" >  
+    <ul>
+      <li>User name: <%= @user.name %></li>
+      <li>User email: <%= @user.email %></li>
+      <li>User birthday: <%= I18n.l @user.birthday %></li>
+      <li>User gender: <%= @user.gender %></li>
+      <% if @user.status_relationship.present? %>
+        <li>User status relationship: <%= @user.status_relationship %></li>
+      <% end %>
+      <% if @user.address.present? %>
+        <li>User address: <%= @user.address %></li>
+      <% end %>
+      <% if @user.favorite_book.present? %>
+        <li>User favorite book: <%= @user.favorite_book %></li>
+      <% end %>
+      <% if @user.favorite_quote.present? %>
+        <li>User favorite quote: <%= @user.favorite_quote %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% else %>
+  <h4>This information is private!</h4>
+<% end %>

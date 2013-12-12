@@ -1,0 +1,7 @@
+<%= form_for [current_user, @user_friend], html: { method: :delete } do |f| %>
+	<% if @user.friended? current_user %>
+  	<%= f.submit "Unfriend", class: "btn btn-large" %>
+  <% else %>
+  	<%= f.submit "Destroy invite friend!", class: "btn btn-large" %>
+  <% end %>
+<% end %>

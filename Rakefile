@@ -3,4 +3,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+<<<<<<< HEAD
 FacebookApp::Application.load_tasks
+=======
+DeviseExample::Application.load_tasks
+>>>>>>> develop
