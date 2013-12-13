@@ -49,10 +49,13 @@
             </div><!--/.well -->
           <% end %>
           </div><!--/span-->
-            <div class="span9">
-              <%= bootstrap_flash %>
-              <%= yield %>
-            </div>
+          <div class="span9">
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </div>
+          <div class="reight_sidebar">
+            <%= render "users/show_activities" if user_signed_in? %>
+          </div>
         </div><!--/row-->
       <footer>
         <center><p>&copy; Mui ngu 2013</p></center>

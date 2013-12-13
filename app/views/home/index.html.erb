@@ -2,8 +2,5 @@
 <% @statuses.order_desc_created_at.each do |status| %>
   <% if current_user.id == status.user_id || current_user.id == status.host_id  || status.status_host.friended?(current_user) || status.user.friended?(current_user) || status.shared_by?(current_user) || status.create_by_friend_of?(current_user) %>
       <%= render "users/status_comments", status: status %>
-    <% end %>
   <% end %>
-<div class="activities">
-  <%= render "users/show_activities" %>
-</div>
+<% end %>

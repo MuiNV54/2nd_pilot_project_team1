@@ -46,7 +46,9 @@
     width: 25%;
     font-weight: bold;
     line-height: 1;
-      >a {color: white;}
+      >a {color: white;
+        text-decoration: none;
+      }
   }
 }
 .input_new > input {
@@ -63,8 +65,24 @@
     margin: 0 0 18px 0;
   }
 }
+.reight_sidebar {
+  float: left;
+  margin-left: 10px;
+  width: 320px;
+  ul{
+    list-style: none outside none;
+  }
+}
 
-.field_with_errors {
-  @extend .control-group;
-  @extend .error;
+.activities_content{
+  border-bottom: 1px solid #E9E9E9;
+  margin-left: 40px;
+  margin-top: -35px;
+  text-align: inherit;
+  font-size: 12px;
+  min-height: 40px;
+}
+.activities {
+  margin-bottom: 10px;
+  text-align: inherit;
 }
