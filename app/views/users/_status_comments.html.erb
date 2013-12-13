@@ -1,0 +1,91 @@
+      <div class="status-user">
+        <% if status.create_by_friend? %>
+          <div class="status-image">
+            <%= link_to gravatar_for status.user, status.user %>
+          </div>
+          <%= link_to status.status_host.name, status.status_host %> to <%= link_to status.user.name, status.user %> <br/>
+          <%= status.content.html_safe %>
+        <% else %>
+        <div class="status-image">
+          <%= link_to gravatar_for(status.user), status.user %>
+        </div>
+        <div class="status-content-wrap">
+          <div class="name">          
+            <%= link_to status.user.name, status.user %> </br>
+          </div>
+          <div class="status-content">
+            <%= status.content.html_safe %>
+          </div>
+        </div>
+        <% end %>
+        <div class="status-meta" >
+          <% if current_user.id == status.host_id && current_user?(@user) %>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">policy<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "public", user_status_path(@user, status, flag: "public"), method: :patch %></li>
+                <li><%= link_to "friend", user_status_path(@user, status, flag: "friend"), method: :patch %></li>
+                <li><%= link_to "private", user_status_path(@user, status, flag: "private"), method: :patch %></li>
+              </ul>
+            </li>
+          <% end %>
+          <%= time_ago_in_words status.created_at %> ago
+          <a onclick= "like_or_unlike_status(<%= current_user.id %>,<%= status.id %>, this)">
+            <% if status.liked? current_user %>
+              Unlike
+            <% else %>
+              Like
+            <% end %>
+           </a>
+          <span class="num"><%= status.like_statuses.count if status.like_statuses.count > 0  %></span>
+          <%= link_to "share", user_status_shares_path(current_user, status), method: :post, confirm: "Do you want share this status in your wall?" %> 
+          <%= status.share_by_users.count if status.share_by_users.count > 0 %>
+          <% if status.shared_by?(current_user) && current_user?(@user) %>
+            <%= link_to "delete", user_status_share_path(current_user, status, current_user.shares.shared(status.id).first), method: :delete %> 
+          <% end %>
+          <% if status.user_id == current_user.id %>
+              <%= link_to "edit", "#", class: "non-redirect edit-status-btn" %>        
+              <%= link_to "delete", user_status_path(@user, status), method: :delete, confirm: "Are you sure?" %>
+          <% end %>
+        </div>
+        <div class="edit-status-wrap" style="display: none" >
+            <%= form_for [current_user, status] do |f| %>
+              <%= f.text_area :content, class:"ckeditor" %>
+              <%= f.submit "Edit status" %>
+            <% end %>
+          </div>
+        <div class="status-comments">
+          <% status.comments.each do |comment| %>
+            <div class="status-comment">
+              <div class="name">
+                <%= link_to small_avatar(comment.user), comment.user %>
+                <%= link_to comment.user.name, comment.user %>
+              </div>
+              <%= comment.content %></br>
+              <%= time_ago_in_words(comment.created_at) %> ago
+              <a onclick= "like_or_unlike_comment(<%= current_user.id %>,<%= comment.id %>,this)" >
+                <% if comment.liked_by? current_user %>
+                  Unlike
+                <% else %>
+                  Like
+                <% end %>
+              </a>
+              <span class="num"><%= comment.like_comments.count if comment.like_comments.count > 0  %></span>
+              <% if status.user_id == current_user.id || comment.user_id == current_user.id %>
+                <%= link_to "edit", "#", class: "non-redirect edit_comment_btn" %>
+                <%= link_to "delete", user_status_comment_path(@user, status, comment), method: :delete, confirm: "Are you sure?" %> 
+              <% end %>
+            </div>
+            <div class="edit_comment_wrap" style="display: none" >
+              <%= form_for [current_user, status, comment] do |f| %>
+                <%= f.text_area :content, class: "edit-comment-status", onkeyup:"textAreaAdjust(this)" %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= form_for [current_user, status, @comment] do |f|%>
+            <div class="comment">
+              <%= f.text_area :content, placeholder:"Write comment...", class: "comment_status", onkeyup:"textAreaAdjust(this)" %>
+            </div>
+          <% end %>
+        </div>
+      </div>

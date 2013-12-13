@@ -1,9 +1,9 @@
 <h3>Change Users Profile</h3>
 <div class="edit_profile">
 <%= form_for current_user do |f| %>
+  <%= render 'shared/error_messages' %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
-
+  <div class="input_new"><%= f.text_field :name %></div>
   <div><%= f.label :birthday %>
   <div class="date_select">
     <%= f.date_select :birthday, order: [:day, :month, :year] %>

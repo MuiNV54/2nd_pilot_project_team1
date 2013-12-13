@@ -13,32 +13,32 @@
                 <div class="search">
                   <%= render "users/condition_fields" %>
                 </div>
-                <div class="avatar-header">
-                  <% if current_user.avatar? %>
-                    <%= link_to image_tag(current_user.avatar.avatar), current_user %>
-                  <% else %>
-                    <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), current_user %>
-                  <% end %>
+                <div class="menu">
+                  <li>
+                    <% if current_user.avatar? %>
+                      <%= link_to image_tag(current_user.avatar.avatar), current_user %>
+                    <% else %>
+                      <%= link_to image_tag("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/c178.0.604.604/s160x160/252231_1002029915278_1941483569_n.jpg", style:"width: 50px" ), current_user %>
+                    <% end %>
+                  </li>
+                  <li><%= link_to current_user.name, current_user %></li>
+                    <li class="dropdown">
+                       <%= link_to "Home", root_path %>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "Edit password", edit_user_registration_path(current_user) %></li>
+                        <li><%= link_to "Public", user_path(current_user, flag: "public"), method: :patch %></li>
+                        <li><%= link_to "Friend", user_path(current_user, flag: "friend"), method: :patch %></li>
+                        <li><%= link_to "Private", user_path(current_user, flag: "private"), method: :patch %></li>
+                        <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+                      </ul>
+                    </li>
                 </div>
-                <li><%= link_to current_user.name, current_user %></li>
-                  <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Policy<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Public", user_path(current_user, flag: "public"), method: :patch %></li>
-                      <li><%= link_to "Friend", user_path(current_user, flag: "friend"), method: :patch %></li>
-                      <li><%= link_to "Private", user_path(current_user, flag: "private"), method: :patch %></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-                      <li><%= link_to "Edit password", edit_user_registration_path(current_user) %></li>
-                    </ul>
-                  </li>
               <% else %>
                 <li><%= link_to "Sign in", new_user_session_path %></li>
-                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <li><%= link_to "Sign up",  new_user_registration_path %></li>
               <% end %>
 
             </ul>

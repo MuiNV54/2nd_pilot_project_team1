@@ -19,9 +19,52 @@
     clear: both;
   }
  }
- #fancybox-outer > a {
-    width: 40px;
-}
+
 .nav.nav-list > img {
     cursor: pointer;
+}
+.edit-comment-status {
+    width: 475px;
+}
+
+.status-user {
+  border-bottom: 1px solid #E9E9E9;
+  padding-top: 18px;
+}
+
+.menu_user {
+  display: inline-flex;
+  list-style: none outside none;
+  width: 550px;
+  border: 1px solid;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 30px;
+  padding-top: 5px;
+  background-color: #008F47;
+  > li {
+    width: 25%;
+    font-weight: bold;
+    line-height: 1;
+      >a {color: white;}
+  }
+}
+.input_new > input {
+    width: 295px;
+}
+
+.field_with_errors > input {
+    width: 295px;
+}
+#error_explanation {
+  color: #B94A48;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
 }

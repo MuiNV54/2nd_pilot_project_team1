@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require bootstrap
-//= require fancybox
 //= require_tree .
-//= require ckeditor/init
 //= require jquery.turbolinks
-
+//= require jquery.turbolinks
+//= require fancybox
+//= require album
+//= require home_statuses
