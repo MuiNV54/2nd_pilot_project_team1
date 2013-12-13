@@ -21,7 +21,6 @@ group :development do
 end
 gem "mini_magick"
 gem "carrierwave"
-gem "ckeditor"
 gem 'fancybox-rails'
 gem "sass-rails", "~> 4.0.0"
 gem "ransack"
