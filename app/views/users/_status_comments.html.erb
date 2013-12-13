@@ -50,7 +50,7 @@
   </div>
   <div class="edit-status-wrap" style="display: none" >
       <%= form_for [current_user, status] do |f| %>
-        <%= f.text_area :content, class:"ckeditor" %>
+        <%= f.text_area :content %>
         <%= f.submit "Edit status" %>
       <% end %>
     </div>
