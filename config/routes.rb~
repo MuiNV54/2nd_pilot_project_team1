@@ -1,5 +1,4 @@
 DeviseExample::Application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
   root 'home#index'
   devise_for :users
   devise_scope :user do

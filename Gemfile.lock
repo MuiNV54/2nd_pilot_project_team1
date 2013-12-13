@@ -56,7 +56,6 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
-    ckeditor (4.0.6)
       mime-types
       orm_adapter
     coderay (1.1.0)
@@ -200,7 +199,6 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-will_paginate (= 0.0.9)
   carrierwave
-  ckeditor
   coffee-rails (~> 4.0.0)
   devise!
   faker (= 1.1.2)
