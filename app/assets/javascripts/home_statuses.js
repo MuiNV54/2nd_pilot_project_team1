@@ -1,30 +1,39 @@
-function like_or_unlike_status(user_id, status_id,btn){
-  $.ajax({
+$(function() {
+  $(".like_status_btn").click(function(){
+    status_id = $(this).data().status;
+    $.ajax({
     type: "GET",
     url: "/like_statuses/like_or_unlike",
-    data: {user_id: user_id,status_id: status_id},
+    dataType: "json",
+    data: {user_id: $(this).data().id,status_id: $(this).data().status},
     error: function(data){
     },
     success: function(data){
-      btn.innerText = data["message"];
-      btn.nextElementSibling.innerText = data["num"];
+      $(".btn_" + status_id).html(data.message);
+      $(".btn_" + status_id).siblings("span.num").html(data.num);
     }
   })
-}
-function like_or_unlike_comment(user_id, comment_id, btn){
-  $.ajax({
+  });
+});
+
+$(function() {
+  $(".like_comment_btn").click(function(){
+    comment_id = $(this).data().comment;
+    $.ajax({
     type: "GET",
     url: "/like_comments/like_or_unlike",
-    data: {user_id: user_id,comment_id:comment_id},
+    dataType: "json",
+    data: {user_id: $(this).data().id,comment_id: $(this).data().comment},
     error: function(data){
-      alert("Something went wrong");
     },
     success: function(data){
-      btn.innerText = data["message"];
-      btn.nextElementSibling.innerText = data["number"];
+      $(".btn_" + comment_id).html(data.message);
+      $(".btn_" + comment_id).siblings("span.number").html(data.number);
     }
   })
-}
+  });
+});
+
 function textAreaAdjust(o) {
     o.style.height = "1px";
     o.style.height = (10+o.scrollHeight)+"px";
@@ -68,4 +77,3 @@ $('#comment_content').keydown(function(e) {
         $('#new_comment').submit();
     }
 });
-$('textarea').ckeditor({language: 'en'});

@@ -1,28 +1,29 @@
-<h3>Change Users Profile</h3>
 <div class="edit_profile">
-<%= form_for current_user do |f| %>
-  <%= render 'shared/error_messages' %>
-  <%= f.label :name %>
-  <div class="input_new"><%= f.text_field :name %></div>
-  <div><%= f.label :birthday %>
-  <div class="date_select">
-    <%= f.date_select :birthday, order: [:day, :month, :year] %>
-  </div>
-  <%= f.radio_button :gender, "male" %> Male
-  <%= f.radio_button :gender, "female" %> Female<br>
+  <h3>Change Users Profile</h3>
+  <%= form_for current_user do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= f.label :name %>
+    <div class="input_new"><%= f.text_field :name %></div>
+    <%= f.label :birthday %>
+    <div class="date_select">
+      <%= f.date_select :birthday, order: [:day, :month, :year] %>
+    </div>
+    <%= f.radio_button :gender, "male" %> Male
+    <%= f.radio_button :gender, "female" %> Female<br>
 
-  <div><%= f.label :status_relationship %>
-  <%= f.text_area :status_relationship %></div>
+    <%= f.label :status_relationship %>
+    <%= f.text_area :status_relationship %>
 
-  <div><%= f.label :address %>
-  <%= f.text_area :address %>
+    <%= f.label :address %>
+    <%= f.text_area :address %>
 
-  <%= f.label :favorite_book %>
-  <%= f.text_area :favorite_book %>
+    <%= f.label :favorite_book %>
+    <%= f.text_area :favorite_book %>
 
-  <%= f.label :favorite_quote %>
-  <%= f.text_area :favorite_quote %>
+    <%= f.label :favorite_quote %>
+    <%= f.text_area :favorite_quote %>
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
-<%= link_to "Cancel", :back %>
+    <div><%= f.submit "Update" %></div>
+  <% end %>
+  <%= link_to "Cancel", :back %>
+</div>

@@ -37,7 +37,6 @@ class Status < ActiveRecord::Base
   def create_by_friend_of? user
     check = false
     self.share_by_users.each do |shared_user|
-      binding.pry
       if shared_user.friended? user
         check = true
         break

@@ -30,7 +30,7 @@
       </li>
     <% end %>
     <%= time_ago_in_words status.created_at %> ago
-    <a onclick= "like_or_unlike_status(<%= current_user.id %>,<%= status.id %>, this)">
+    <a class= "like_status_btn btn_<%= status.id %>" data-id="<%= current_user.id %>" data-status="<%= status.id %>">
       <% if status.liked? current_user %>
         Unlike
       <% else %>
@@ -63,14 +63,14 @@
         </div>
         <%= comment.content %></br>
         <%= time_ago_in_words(comment.created_at) %> ago
-        <a onclick= "like_or_unlike_comment(<%= current_user.id %>,<%= comment.id %>,this)" >
+        <a class= "like_comment_btn btn_<%= comment.id %>" data-id="<%= current_user.id %>" data-comment="<%= comment.id %>">
           <% if comment.liked_by? current_user %>
             Unlike
           <% else %>
             Like
           <% end %>
         </a>
-        <span class="num"><%= comment.like_comments.count if comment.like_comments.count > 0  %></span>
+        <span class="number"><%= comment.like_comments.count if comment.like_comments.count > 0  %></span>
         <% if status.user_id == current_user.id || comment.user_id == current_user.id %>
           <%= link_to "edit", "#", class: "non-redirect edit_comment_btn" %>
           <%= link_to "delete", user_status_comment_path(@user, status, comment), method: :delete, confirm: "Are you sure?" %> 

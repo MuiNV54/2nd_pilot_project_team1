@@ -12,8 +12,8 @@
   <%= link_to "Edit profile", edit_user_path(current_user) %>
 <% end %>
 <ul>
-  <li>User name: <%= @user.name %></li>
-  <li>User email: <%= @user.email %></li>
-  <li>User birthday: <%= I18n.l @user.birthday %></li>
-  <li>User gender: <%= @user.gender %></li>
+  <li>Name: <a><%= @user.name %></a></li>
+  <li>Email: <a><%= @user.email %></a></li>
+  <li>Birthday: <a><%= I18n.l @user.birthday %></a></li>
+  <li>Gender: <a><%= @user.gender %></a></li>
 </ul>

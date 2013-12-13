@@ -1,6 +1,6 @@
 module ApplicationHelper
 	def current_user? user
-    user == current_user
+   current_user == user
   end
 
   def link_to_add_fields(name, f, type)
